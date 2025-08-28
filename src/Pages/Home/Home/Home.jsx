@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import MenuCard from '../PopularMenu/PopularMenu';
 import Advertisement from '../Advertisement/Advertisement';
 import Banner from '../Banner/Banner';
@@ -6,7 +7,6 @@ import ChefRecom from '../ChefRecom/ChefRecom';
 import Featured from '../Featured/Featured';
 import Testimonials from '../Testimonials/Testimonials';
 import CallUs from '../CallUs/CallUs';
-import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
     return (

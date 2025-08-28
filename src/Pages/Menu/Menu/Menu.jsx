@@ -1,11 +1,33 @@
+import { Helmet } from "react-helmet-async";
 import SectionTitles from "../../../Components/SectionTitles/SectionTitles";
 import Cover from "../../../Shared/Cover/Cover";
+import MenuCategory from "../../../Shared/MenuCategory/MenuCategory";
 import Banner3 from "../../../assets/images/bgCover/banner3.jpg"
+import useMenu from "../../../useMenu/useMenu";
+
+import dessertBg from "../../../assets/images/menu/dessert-bg.jpeg"
+import pizzaBg from "../../../assets/images/menu/pizza-bg.jpg"
+import saladBg from "../../../assets/images/menu/salad-bg.jpg"
+import soupBg from "../../../assets/images/menu/soup-bg.jpg"
 
 
 const Menu = () => {
+    const [menu, loading] = useMenu()
+    const offered = menu.filter(item => item.category === "offered")
+    const dessert = menu.filter(item => item.category === "dessert")
+    const pizza = menu.filter(item => item.category === "pizza")
+    const salad = menu.filter(item => item.category === "salad")
+    const soup = menu.filter(item => item.category === "soup")
+
+    if (loading) return <div className="text-center py-8">Loading menu...</div>
+    if (!menu.length) return <div className="text-center py-8">No menu items found</div>
+
     return (
         <div>
+            <Helmet>
+                <title>Our Menu | Dine Easy Restaurant</title>
+            </Helmet>
+            {/* Main Banner */}
             <Cover
                 bgImg={Banner3}
                 heading={"OUR MENU"}
@@ -13,6 +35,56 @@ const Menu = () => {
             ></Cover>
 
 
+            {/* TODAY'S OFFER */}
+            <SectionTitles
+                heading={"TODAY'S OFFER"}
+                subHeading={"Don't miss"}
+            ></SectionTitles>
+
+            <MenuCategory
+                bgImg={undefined}
+                heading=""
+                subHeading=""
+                items={offered}
+            >
+            </MenuCategory>
+
+
+            {/* DESSERTS */}
+            <MenuCategory
+                bgImg={dessertBg}
+                heading="DESSERTS"
+                subHeading="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                items={dessert}
+            >
+            </MenuCategory>
+
+            {/* PIZZA */}
+            <MenuCategory
+                bgImg={pizzaBg}
+                heading="PIZZA"
+                subHeading="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                items={pizza}
+            >
+            </MenuCategory>
+
+            {/* SALADS */}
+            <MenuCategory
+                bgImg={saladBg}
+                heading="SALADS"
+                subHeading="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                items={salad}
+            >
+            </MenuCategory>
+
+            {/* SOUPS */}
+            <MenuCategory
+                bgImg={soupBg}
+                heading="SOUPS"
+                subHeading="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                items={soup}
+            >
+            </MenuCategory>
         </div>
     );
 };
