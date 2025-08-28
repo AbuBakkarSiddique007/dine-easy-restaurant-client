@@ -3,6 +3,9 @@ import Advertisement from '../Advertisement/Advertisement';
 import Banner from '../Banner/Banner';
 import Slider from '../Slider/Slider';
 import ChefRecom from '../ChefRecom/ChefRecom';
+import Featured from '../Featured/Featured';
+import Testimonials from '../Testimonials/Testimonials';
+import CallUs from '../CallUs/CallUs';
 
 const Home = () => {
     return (
@@ -11,7 +14,10 @@ const Home = () => {
             <Slider></Slider>
             <Advertisement></Advertisement>
             <MenuCard></MenuCard>
+            <CallUs></CallUs>
             <ChefRecom></ChefRecom>
+            <Featured></Featured>
+            <Testimonials></Testimonials>
 
         </div>
     );

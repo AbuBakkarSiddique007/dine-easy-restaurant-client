@@ -4,7 +4,7 @@ const Advertisement = () => {
     return (
         <div className="container mx-auto px-4 py-8">
             <div
-                className="bg-cover bg-center bg-no-repeat h-96 rounded-lg relative flex items-center justify-center"
+                className="bg-cover bg-center bg-no-repeat h-96 rounded-lg relative flex items-center justify-center bg-fixed"
                 style={{ backgroundImage: `url(${bgImg})` }}
             >
                 <div className="absolute inset-0 bg-black/40 rounded-lg"></div>
