@@ -6,10 +6,15 @@ import ChefRecom from '../ChefRecom/ChefRecom';
 import Featured from '../Featured/Featured';
 import Testimonials from '../Testimonials/Testimonials';
 import CallUs from '../CallUs/CallUs';
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
     return (
         <div>
+            <Helmet>
+                <title>Home | Dine Easy Restaurant</title>
+            </Helmet>
+
             <Banner></Banner>
             <Slider></Slider>
             <Advertisement></Advertisement>
