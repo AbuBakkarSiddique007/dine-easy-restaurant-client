@@ -17,11 +17,11 @@ const Cover = ({ bgImg, heading, subHeading }) => {
                         backgroundImage: `url(${bgImg})`
                     }}
                 >
-                </div> */} 
+                </div> */}
 
                 <div className="absolute inset-0 flex items-center justify-center z-10 text-white">
                     <div className=" flex flex-col justify-center items-center bg-black/60 shadow-2xl w-3xl h-72 max-w-4xl text-center">
-                        <h1 className="text-5xl font-bold  mb-6 leading-tight drop-shadow-lg">
+                        <h1 className="text-5xl font-bold uppercase  mb-6 leading-tight drop-shadow-lg">
                             {heading}
                         </h1>
                         <p className="text-xl uppercase leading-relaxed drop-shadow-md">

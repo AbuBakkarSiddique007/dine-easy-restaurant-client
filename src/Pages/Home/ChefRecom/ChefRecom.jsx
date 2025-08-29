@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SectionTitles from '../../../Components/SectionTitles/SectionTitles';
+import Loader from '../../../Shared/Loader/Loader';
 
 // {
 //         "_id": "642c155b2c4774f05c36ee99",
@@ -27,7 +28,7 @@ const ChefRecom = () => {
         , [])
 
 
-    if (loading) return <p>Loading ... ...</p>
+    if (loading) return <Loader></Loader>
     console.log(menuData);
 
     return (
@@ -56,7 +57,6 @@ const ChefRecom = () => {
                         </div>
                     ))
                 }
-
             </div>
         </section>
     );

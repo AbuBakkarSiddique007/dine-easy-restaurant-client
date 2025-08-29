@@ -9,6 +9,7 @@ import dessertBg from "../../../assets/images/menu/dessert-bg.jpeg"
 import pizzaBg from "../../../assets/images/menu/pizza-bg.jpg"
 import saladBg from "../../../assets/images/menu/salad-bg.jpg"
 import soupBg from "../../../assets/images/menu/soup-bg.jpg"
+import Loader from "../../../Shared/Loader/Loader";
 
 
 const Menu = () => {
@@ -19,7 +20,7 @@ const Menu = () => {
     const salad = menu.filter(item => item.category === "salad")
     const soup = menu.filter(item => item.category === "soup")
 
-    if (loading) return <div className="text-center py-8">Loading menu...</div>
+    if (loading) return <Loader></Loader>
     if (!menu.length) return <div className="text-center py-8">No menu items found</div>
 
     return (
@@ -27,6 +28,7 @@ const Menu = () => {
             <Helmet>
                 <title>Our Menu | Dine Easy Restaurant</title>
             </Helmet>
+
             {/* Main Banner */}
             <Cover
                 bgImg={Banner3}
@@ -46,6 +48,7 @@ const Menu = () => {
                 heading=""
                 subHeading=""
                 items={offered}
+                cat="offered"
             >
             </MenuCategory>
 
@@ -53,7 +56,7 @@ const Menu = () => {
             {/* DESSERTS */}
             <MenuCategory
                 bgImg={dessertBg}
-                heading="DESSERTS"
+                heading="dessert"
                 subHeading="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                 items={dessert}
             >
@@ -62,7 +65,7 @@ const Menu = () => {
             {/* PIZZA */}
             <MenuCategory
                 bgImg={pizzaBg}
-                heading="PIZZA"
+                heading="pizza"
                 subHeading="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                 items={pizza}
             >
@@ -71,7 +74,7 @@ const Menu = () => {
             {/* SALADS */}
             <MenuCategory
                 bgImg={saladBg}
-                heading="SALADS"
+                heading="salad"
                 subHeading="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
                 items={salad}
             >
@@ -80,7 +83,7 @@ const Menu = () => {
             {/* SOUPS */}
             <MenuCategory
                 bgImg={soupBg}
-                heading="SOUPS"
+                heading="soup"
                 subHeading="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                 items={soup}
             >

@@ -4,12 +4,40 @@ const Navbar = () => {
 
     const NavOptions = <>
         <li>
-            <NavLink to={"/"}> Home </NavLink>
+            <NavLink to={"/"}
+                className={({ isActive }) =>
+                    `px-4 mr-2 py-2 rounded-lg transition-colors ${isActive
+                        ? 'bg-green-400 text-white'
+                        : ''
+                    }`
+                }
+
+            > Home </NavLink>
         </li>
         <li>
-            <NavLink to={"/menu"}>Our Menu</NavLink>
+            <NavLink to={"/menu"}
+                className={({ isActive }) =>
+                    `px-4 mr-2 py-2 rounded-lg transition-colors ${isActive
+                        ? 'bg-green-400 text-white'
+                        : ''
+                    }`
+                }
+            >Our Menu</NavLink>
+
         </li>
-        <li><a>Item 3</a></li>
+
+        <li>
+            <NavLink to={"/order"}
+                className={({ isActive }) =>
+                    `px-4 mr-2 py-2 rounded-lg transition-colors ${isActive
+                        ? 'bg-green-400 text-white'
+                        : ''
+                    }`
+                }
+            >Order Food</NavLink>
+
+        </li>
+
 
     </>
 

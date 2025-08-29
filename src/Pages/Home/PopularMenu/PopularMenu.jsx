@@ -1,5 +1,6 @@
 import SectionTitles from '../../../Components/SectionTitles/SectionTitles';
 import ItemMenuCard from '../../../Shared/ItemMenuCard/ItemMenuCard';
+import Loader from '../../../Shared/Loader/Loader';
 import useMenu from '../../../useMenu/useMenu';
 
 
@@ -20,7 +21,7 @@ const PopularMenu = () => {
     // New: Using custom hook:
     const [menu, loading] = useMenu()
 
-    if (loading) return <div>Loading menu...</div>
+    if (loading) return <Loader></Loader>
     // console.log(menu);
 
     const popularItems = menu.filter(item => item.category === "popular")
