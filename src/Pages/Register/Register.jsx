@@ -37,7 +37,7 @@ const Register = () => {
         >
             <div className="absolute inset-0 bg-black/40"></div>
 
-            <div className="hero backdrop-blur-sm bg-white/10 rounded-2xl shadow-2xl border border-white/20 relative z-10 w-full max-w-7xl">
+            <div className="hero backdrop-blur-sm bg-white/10 rounded-2xl shadow-2xl border border-white/20 relative  w-full max-w-7xl">
                 <div className="hero-content flex-col lg:flex-row gap-8 lg:gap-12 p-4 sm:p-6 lg:p-8 xl:p-12 w-full">
                     <div className="hidden lg:block lg:w-1/2">
                         <div className="relative group">

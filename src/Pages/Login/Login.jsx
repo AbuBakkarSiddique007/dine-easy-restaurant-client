@@ -2,7 +2,21 @@ import { Link } from "react-router-dom";
 import AuthBg from "../../assets/images/Auth/authentication.png";
 import AuthImg1 from "../../assets/images/Auth/authentication2.png";
 
+import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import { useEffect, useRef, useState } from "react";
+
+
 const Login = () => {
+
+
+    const captchaRef = useRef(null)
+    const [disable, setDisable] = useState(true)
+
+    useEffect(() => {
+        loadCaptchaEnginge(6);
+    },
+        [])
+
 
     const handleForm = (event) => {
         event.preventDefault()
@@ -11,10 +25,29 @@ const Login = () => {
         const email = form.email.value
         const password = form.password.value
 
-        console.log(email, password);
-
+        const formData = {
+            email,
+            password
+        }
+        console.log(formData);
     }
 
+    const handleCaptcha = (e) => {
+        e.preventDefault()
+        const userCaptchaValue = captchaRef.current.value
+
+        if (validateCaptcha(userCaptchaValue) === true) {
+            setDisable(false)
+            console.log("Captcha Matched");
+
+        }
+        else {
+            setDisable(true)
+            console.log("Not matched");
+        }
+
+
+    }
 
     return (
         <div
@@ -23,7 +56,7 @@ const Login = () => {
         >
             <div className="absolute inset-0 bg-black/40"></div>
 
-            <div className="hero backdrop-blur-sm bg-white/10 rounded-2xl shadow-2xl border border-white/20 relative z-10 w-full max-w-6xl">
+            <div className="hero backdrop-blur-sm bg-white/10 rounded-2xl shadow-2xl border border-white/20 relative  w-full max-w-6xl">
                 <div className="hero-content flex-col lg:flex-row gap-8 lg:gap-12 p-4 sm:p-6 lg:p-8 xl:p-12 w-full">
                     <div className="hidden lg:block lg:w-1/2">
                         <div className="relative group">
@@ -80,7 +113,27 @@ const Login = () => {
                                         />
                                     </div>
 
-                                    <div className="flex justify-between items-center text-sm">
+                                    <div className="space-y-2">
+                                        <LoadCanvasTemplate />
+
+                                        <input
+                                            type="text"
+                                            ref={captchaRef}
+
+                                            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-300 bg-white/90 placeholder-gray-400"
+                                            placeholder="Enter your Captcha"
+                                            required
+                                        />
+                                        <button
+                                            type="button"
+
+                                            onClick={handleCaptcha}
+                                            className="btn btn-warning btn-xs"
+                                        >Verify Captcha</button>
+
+                                    </div>
+
+                                    {/* <div className="flex justify-between items-center text-sm">
                                         <label className="flex items-center space-x-2 cursor-pointer">
                                             <input
                                                 type="checkbox"
@@ -95,12 +148,18 @@ const Login = () => {
                                         >
                                             Forgot password?
                                         </a>
-                                    </div>
+                                    </div> */}
 
-                                    <input type="submit" value="Login"
-
-                                        className="w-full py-3 px-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-purple-500/25 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 active:scale-95"
+                                    <input
+                                        type="submit"
+                                        value="Login"
+                                        disabled={disable}
+                                        className={`w-full py-3 px-6 font-semibold rounded-xl shadow-lg transform transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 active:scale-95 ${disable
+                                            ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
+                                            : 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:scale-105 hover:shadow-purple-500/25'
+                                            }`}
                                     />
+
                                 </form>
 
                                 <div className="relative">
