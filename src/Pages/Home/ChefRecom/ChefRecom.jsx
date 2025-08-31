@@ -37,7 +37,7 @@ const ChefRecom = () => {
                 heading={"CHEF RECOMMENDS"}
                 subHeading={"Should Try"}
             ></SectionTitles>
-            <div className='flex'>
+            <div className='md:flex'>
                 {
                     menuData.map(data => (
                         <div key={data._id} className="card bg-base-100 w-96 shadow-sm">

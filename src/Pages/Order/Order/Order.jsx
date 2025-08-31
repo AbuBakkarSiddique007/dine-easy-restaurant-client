@@ -54,12 +54,12 @@ const Order = () => {
                     <Tab>Desserts</Tab>
                     <Tab>Drinks</Tab> */}
 
-                        <Tab style={{ color: tabIndex === 0 ? '#3b82f6' : '#6b7280' }}>offered</Tab>
-                        <Tab style={{ color: tabIndex === 1 ? '#3b82f6' : '#6b7280' }}>Salad</Tab>
-                        <Tab style={{ color: tabIndex === 2 ? '#3b82f6' : '#6b7280' }}>Pizza</Tab>
-                        <Tab style={{ color: tabIndex === 3 ? '#3b82f6' : '#6b7280' }}>Soup</Tab>
-                        <Tab style={{ color: tabIndex === 4 ? '#3b82f6' : '#6b7280' }}>Desserts</Tab>
-                        <Tab style={{ color: tabIndex === 5 ? '#3b82f6' : '#6b7280' }}>Drinks</Tab>
+                        <Tab style={{ color: tabIndex === 0 ? '#bb8506' : '#151515' }}>OFFERffered</Tab>
+                        <Tab style={{ color: tabIndex === 1 ? '#bb8506' : '#151515' }}>SALADS</Tab>
+                        <Tab style={{ color: tabIndex === 2 ? '#bb8506' : '#151515' }}>PIZZA</Tab>
+                        <Tab style={{ color: tabIndex === 3 ? '#bb8506' : '#151515' }}>SOUPS</Tab>
+                        <Tab style={{ color: tabIndex === 4 ? '#bb8506' : '#151515' }}>DESSERTS</Tab>
+                        <Tab style={{ color: tabIndex === 5 ? '#bb8506' : '#151515' }}>DRINKS</Tab>
                     </TabList>
                 </div>
 

@@ -19,7 +19,7 @@ const OrderTab = ({ items }) => {
                         <h2 className="card-title">{item?.name}</h2>
                         <p>{item?.recipe}</p>
                         <div className="card-actions">
-                            <button className="btn btn-primary uppercase">Add to Cart</button>
+                            <button className="btn btn-outline border-0 border-b-3 border-[#BB8506] text-[#BB8506] hover:bg-[#111827] bg-gray-400/20 ">Add to Cart</button>
                         </div>
                     </div>
                 </div>))

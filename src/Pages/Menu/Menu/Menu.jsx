@@ -15,10 +15,10 @@ import Loader from "../../../Shared/Loader/Loader";
 const Menu = () => {
     const [menu, loading] = useMenu()
     const offered = menu.filter(item => item.category === "offered")
-    const dessert = menu.filter(item => item.category === "dessert")
-    const pizza = menu.filter(item => item.category === "pizza")
     const salad = menu.filter(item => item.category === "salad")
+    const pizza = menu.filter(item => item.category === "pizza")
     const soup = menu.filter(item => item.category === "soup")
+    const dessert = menu.filter(item => item.category === "dessert")
 
     if (loading) return <Loader></Loader>
     if (!menu.length) return <div className="text-center py-8">No menu items found</div>
@@ -52,13 +52,12 @@ const Menu = () => {
             >
             </MenuCategory>
 
-
-            {/* DESSERTS */}
+            {/* SALADS */}
             <MenuCategory
-                bgImg={dessertBg}
-                heading="dessert"
-                subHeading="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-                items={dessert}
+                bgImg={saladBg}
+                heading="salad"
+                subHeading="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+                items={salad}
             >
             </MenuCategory>
 
@@ -71,15 +70,6 @@ const Menu = () => {
             >
             </MenuCategory>
 
-            {/* SALADS */}
-            <MenuCategory
-                bgImg={saladBg}
-                heading="salad"
-                subHeading="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
-                items={salad}
-            >
-            </MenuCategory>
-
             {/* SOUPS */}
             <MenuCategory
                 bgImg={soupBg}
@@ -88,6 +78,19 @@ const Menu = () => {
                 items={soup}
             >
             </MenuCategory>
+
+            {/* DESSERTS */}
+            <MenuCategory
+                bgImg={dessertBg}
+                heading="dessert"
+                subHeading="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                items={dessert}
+            >
+            </MenuCategory>
+
+
+
+
         </div>
     );
 };
