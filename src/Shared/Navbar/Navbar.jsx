@@ -39,6 +39,18 @@ const Navbar = () => {
         </li>
 
         <li>
+            <NavLink to={"/contactUs"}
+                className={({ isActive }) =>
+                    `px-4 mr-2 py-2 rounded-lg transition-colors ${isActive
+                        ? 'bg-green-400 text-white'
+                        : ''
+                    }`
+                }
+            >Contact Us</NavLink>
+
+        </li>
+
+        <li>
             <NavLink to={"/login"}
                 className={({ isActive }) =>
                     `px-4 mr-2 py-2 rounded-lg transition-colors ${isActive
