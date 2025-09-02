@@ -94,7 +94,7 @@ const Register = () => {
                                             placeholder="Enter Your Full Name"
 
                                         />
-                                        {errors.name && <span className="text-red-600">This Name field is required</span>}
+                                        {errors.name?.type === "required" && <p className="text-red-600">This Name field is required</p>}
                                     </div>
 
                                     <div className="space-y-2">
@@ -110,7 +110,7 @@ const Register = () => {
                                             className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 bg-white/90 placeholder-gray-400"
                                             placeholder="Enter Your Email"
                                         />
-                                        {errors.email && <span className="text-red-600">This email field is required</span>}
+                                        {errors.email?.type === "required" && <p className="text-red-600">This EEEEmail field is required</p>}
                                     </div>
 
                                     <div className="space-y-3">
@@ -121,13 +121,31 @@ const Register = () => {
                                             <input
                                                 type="password"
                                                 name="password"
-                                                {...register("password", { required: true, minLenght: 6, maxLenght: 20 })}
-
+                                                {...register("password", {
+                                                    required: "Password is required",
+                                                    minLength: {
+                                                        value: 6,
+                                                        message: "Password must be at least 6 characters"
+                                                    },
+                                                    maxLength: {
+                                                        value: 20,
+                                                        message: "Password must not exceed 20 characters"
+                                                    },
+                                                    pattern: {
+                                                        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+                                                        message: "Password must contain at least one uppercase letter, one lowercase letter, and one digit"
+                                                    }
+                                                })}
                                                 className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 bg-white/90 placeholder-gray-400"
                                                 placeholder="Create a password"
                                             />
-                                            {errors.password && <span className="text-red-600">This password field is required</span>}
+                                            {errors.password && (
+                                                <span className="text-red-600 text-sm">
+                                                    {errors.password.message}
+                                                </span>
+                                            )}
                                         </div>
+
                                         <div className="space-y-2">
                                             <label className="text-sm font-medium text-gray-700">
                                                 Confirm Password
