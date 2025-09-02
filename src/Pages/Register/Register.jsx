@@ -1,31 +1,46 @@
 import { Link } from "react-router-dom";
-
 import AuthBg from "../../assets/images/Auth/authentication.png";
 import AuthImg1 from "../../assets/images/Auth/authentication2.png";
+
+import { useForm } from "react-hook-form"
 
 
 const Register = () => {
 
-    const handleForm = (event) => {
-        event.preventDefault()
+    // const handleForm = (event) => {
+    //     event.preventDefault()
 
-        const form = event.target
-        const name = form.name.value
-        const email = form.email.value
-        const password = form.password.value
-        const confirmPassword = form.confirmPassword.value
+    //     const form = event.target
+    //     const name = form.name.value
+    //     const email = form.email.value
+    //     const password = form.password.value
+    //     const confirmPassword = form.confirmPassword.value
 
-        const formData = {
-            name,
-            email,
-            password,
-            confirmPassword
-        }
+    //     const formData = {
+    //         name,
+    //         email,
+    //         password,
+    //         confirmPassword
+    //     }
+    //     console.table({ formData });
+    // }
 
-        console.table({ formData });
+    /**
+     * Using React hook Form
+     */
 
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm()
+
+    const onSubmit = (data) => {
+        console.log(data)
     }
 
+    // console.log(watch("example"))
 
 
 
@@ -63,7 +78,8 @@ const Register = () => {
                                     <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-green-500 rounded-full mx-auto"></div>
                                 </div>
 
-                                <form onSubmit={handleForm} className="space-y-4">
+                                {/* Form Section */}
+                                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                                     <div className="space-y-2">
                                         <label className="text-sm font-medium text-gray-700">
                                             Name
@@ -71,11 +87,14 @@ const Register = () => {
                                         <input
                                             type="text"
                                             name="name"
+                                            {...register("name", { required: true })}
+
 
                                             className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 bg-white/90 placeholder-gray-400"
                                             placeholder="Enter Your Full Name"
-                                            required
+
                                         />
+                                        {errors.name && <span className="text-red-600">This Name field is required</span>}
                                     </div>
 
                                     <div className="space-y-2">
@@ -85,11 +104,13 @@ const Register = () => {
                                         <input
                                             type="email"
                                             name="email"
+                                            {...register("email", { required: true })}
+
 
                                             className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 bg-white/90 placeholder-gray-400"
                                             placeholder="Enter Your Email"
-                                            required
                                         />
+                                        {errors.email && <span className="text-red-600">This email field is required</span>}
                                     </div>
 
                                     <div className="space-y-3">
@@ -100,11 +121,12 @@ const Register = () => {
                                             <input
                                                 type="password"
                                                 name="password"
+                                                {...register("password", { required: true, minLenght: 6, maxLenght: 20 })}
 
                                                 className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 bg-white/90 placeholder-gray-400"
                                                 placeholder="Create a password"
-                                                required
                                             />
+                                            {errors.password && <span className="text-red-600">This password field is required</span>}
                                         </div>
                                         <div className="space-y-2">
                                             <label className="text-sm font-medium text-gray-700">
@@ -113,21 +135,23 @@ const Register = () => {
                                             <input
                                                 type="password"
                                                 name="confirmPassword"
+                                                {...register("confirmPassword", { required: true })}
 
                                                 className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 bg-white/90 placeholder-gray-400"
                                                 placeholder="Confirm your password"
-                                                required
+
                                             />
+                                            {errors.confirmPassword && <span className="text-red-600">This confirmPassword field is required</span>}
                                         </div>
                                     </div>
 
-                                    <div className="flex items-start space-x-2">
+                                    {/* <div className="flex items-start space-x-2">
                                         <input
                                             type="checkbox"
                                             name="agreeToTerms"
 
                                             className="w-4 h-4 mt-0.5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                                            required
+
                                         />
                                         <label className="text-sm text-gray-600 leading-relaxed">
                                             I agree to the{" "}
@@ -139,7 +163,7 @@ const Register = () => {
                                                 Privacy Policy
                                             </a>
                                         </label>
-                                    </div>
+                                    </div> */}
 
                                     <input
                                         type="submit"
