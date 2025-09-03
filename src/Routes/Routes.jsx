@@ -6,6 +6,8 @@ import Order from "../Pages/Order/Order/Order";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import ContactUs from "../Pages/ContactUs/ContactUs/ContactUs";
+import Random from "../Shared/Random/Random";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -42,6 +44,12 @@ export const router = createBrowserRouter([
                 path: "/register",
                 element: <Register></Register>
             },
+            {
+                path: "/random",
+                element: <PrivateRoute>
+                    <Random></Random>
+                </PrivateRoute>
+            }
 
         ]
     }

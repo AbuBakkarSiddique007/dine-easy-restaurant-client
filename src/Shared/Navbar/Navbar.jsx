@@ -1,6 +1,23 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext)
+
+    const hangleLogOut = () => {
+        logOut()
+            .then(() => {
+                console.log("User logout!!!!");
+                Swal.fire({
+                    title: "User Successfully LogOut!",
+                    icon: "success",
+                    draggable: true
+                });
+
+            })
+    }
 
     const NavOptions = <>
         <li>
@@ -51,17 +68,42 @@ const Navbar = () => {
         </li>
 
         <li>
-            <NavLink to={"/login"}
+            <NavLink to={"/random"}
                 className={({ isActive }) =>
                     `px-4 mr-2 py-2 rounded-lg transition-colors ${isActive
                         ? 'bg-green-400 text-white'
                         : ''
                     }`
                 }
-            >Login</NavLink>
-
+            >Random</NavLink>
         </li>
+
         <li>
+            {
+                user ? <>
+                    <p className="text-lg text-green-600">
+                        {user?.displayName}
+                    </p>
+                    <button onClick={hangleLogOut} className="btn btn-error">Logout</button>
+
+                </> :
+                    <>
+
+                        <NavLink to={"/login"}
+                            className={({ isActive }) =>
+                                `px-4 mr-2 py-2 rounded-lg transition-colors ${isActive
+                                    ? 'bg-green-400 text-white'
+                                    : ''
+                                }`
+                            }
+                        >Login</NavLink>
+
+                    </>
+            }
+        </li>
+
+
+        {/* <li>
             <NavLink to={"/register"}
                 className={({ isActive }) =>
                     `px-4 mr-2 py-2 rounded-lg transition-colors ${isActive
@@ -71,7 +113,7 @@ const Navbar = () => {
                 }
             >Register</NavLink>
 
-        </li>
+        </li> */}
 
 
     </>

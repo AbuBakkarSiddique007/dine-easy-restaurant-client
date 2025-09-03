@@ -1,12 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthBg from "../../assets/images/Auth/authentication.png";
 import AuthImg1 from "../../assets/images/Auth/authentication2.png";
 
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { AuthContext } from "../../provider/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const Login = () => {
+    const { loginUser } = useContext(AuthContext)
+    const location = useLocation()
+    const navigate = useNavigate()
+    console.log(location);
+
+    const from = location.state?.from?.pathname || "/";
 
 
     const captchaRef = useRef(null)
@@ -30,6 +38,19 @@ const Login = () => {
             password
         }
         console.log(formData);
+
+        loginUser(email, password)
+            .then(result => {
+                console.log("User Logged In --->", result.user);
+                Swal.fire({
+                    title: "User Successfully LogIn",
+                    icon: "success",
+                    draggable: true
+                });
+                
+                navigate(from, { replace: true });
+
+            })
     }
 
     const handleCaptcha = (e) => {

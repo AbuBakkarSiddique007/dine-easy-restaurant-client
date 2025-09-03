@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthBg from "../../assets/images/Auth/authentication.png";
 import AuthImg1 from "../../assets/images/Auth/authentication2.png";
 
 import { useForm } from "react-hook-form"
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const Register = () => {
@@ -29,20 +32,44 @@ const Register = () => {
      * Using React hook Form
      */
 
+    const { createUser, updateUserProfile } = useContext(AuthContext)
+    const naviaget = useNavigate()
+
     const {
         register,
         handleSubmit,
+        reset,
         watch,
         formState: { errors },
     } = useForm()
 
     const onSubmit = (data) => {
         console.log(data)
+
+        createUser(data.email, data.password)
+            .then(userCredential => {
+                const user = userCredential.user
+                console.log(user);
+                updateUserProfile(data.name, data.photo)
+                    .then(() => {
+                        reset()
+                        Swal.fire({
+                            title: "User Profile Updated!",
+                            icon: "success",
+                            draggable: true
+                        });
+                        naviaget("/")
+                    })
+                    .catch((error) => {
+                        Swal.fire({
+                            title: "An error occurred",
+                            icon: "success",
+                            draggable: true
+                        });
+                        console.log("error--->", error);
+                    });
+            })
     }
-
-    // console.log(watch("example"))
-
-
 
     return (
         <div
@@ -96,6 +123,22 @@ const Register = () => {
                                         />
                                         {errors.name?.type === "required" && <p className="text-red-600">This Name field is required</p>}
                                     </div>
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-medium text-gray-700">
+                                            PhotoURL
+                                        </label>
+                                        <input
+                                            type="url"
+                                            name="photoURL"
+                                            {...register("photoURL", { required: true })}
+
+
+                                            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 bg-white/90 placeholder-gray-400"
+                                            placeholder="Enter Your Full Name"
+
+                                        />
+                                        {errors.photoURL?.type === "required" && <p className="text-red-600">This photoURL field is required</p>}
+                                    </div>
 
                                     <div className="space-y-2">
                                         <label className="text-sm font-medium text-gray-700">
@@ -145,7 +188,6 @@ const Register = () => {
                                                 </span>
                                             )}
                                         </div>
-
                                         <div className="space-y-2">
                                             <label className="text-sm font-medium text-gray-700">
                                                 Confirm Password
@@ -153,13 +195,22 @@ const Register = () => {
                                             <input
                                                 type="password"
                                                 name="confirmPassword"
-                                                {...register("confirmPassword", { required: true })}
-
+                                                {...register("confirmPassword", {
+                                                    required: "Please confirm your password",
+                                                    validate: (value) => {
+                                                        if (watch('password') !== value) {
+                                                            return "Passwords do not match";
+                                                        }
+                                                    }
+                                                })}
                                                 className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 bg-white/90 placeholder-gray-400"
                                                 placeholder="Confirm your password"
-
                                             />
-                                            {errors.confirmPassword && <span className="text-red-600">This confirmPassword field is required</span>}
+                                            {errors.confirmPassword && (
+                                                <span className="text-red-600 text-sm">
+                                                    {errors.confirmPassword.message}
+                                                </span>
+                                            )}
                                         </div>
                                     </div>
 
