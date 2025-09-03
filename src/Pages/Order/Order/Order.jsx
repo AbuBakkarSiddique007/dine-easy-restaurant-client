@@ -6,9 +6,9 @@ import 'react-tabs/style/react-tabs.css';
 import CoverImg from "../../../assets/images/bgCover/banner2.jpg"
 import { useState } from 'react';
 import OrderTab from '../OrderTab/OrderTab';
-import useMenu from '../../../useMenu/useMenu';
 import Loader from '../../../Shared/Loader/Loader';
 import { useParams } from 'react-router-dom';
+import useMenu from '../../../hooks/useMenu/useMenu';
 
 const Order = () => {
     const categories = ["offered", "salad", "pizza", "soup", "dessert", "drinks"]
@@ -17,8 +17,8 @@ const Order = () => {
     const initialIndex = categories.indexOf(category)
     const [tabIndex, setTabIndex] = useState(initialIndex === -1 ? 0 : initialIndex)
 
-    console.log(tabIndex);
-    console.log(category);
+    // console.log(tabIndex);
+    // console.log(category);
 
 
     const [menu, loading] = useMenu()

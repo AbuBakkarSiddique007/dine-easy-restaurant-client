@@ -3,13 +3,13 @@ import SectionTitles from "../../../Components/SectionTitles/SectionTitles";
 import Cover from "../../../Shared/Cover/Cover";
 import MenuCategory from "../../../Shared/MenuCategory/MenuCategory";
 import Banner3 from "../../../assets/images/bgCover/banner3.jpg"
-import useMenu from "../../../useMenu/useMenu";
 
 import dessertBg from "../../../assets/images/menu/dessert-bg.jpeg"
 import pizzaBg from "../../../assets/images/menu/pizza-bg.jpg"
 import saladBg from "../../../assets/images/menu/salad-bg.jpg"
 import soupBg from "../../../assets/images/menu/soup-bg.jpg"
 import Loader from "../../../Shared/Loader/Loader";
+import useMenu from "../../../hooks/useMenu/useMenu";
 
 
 const Menu = () => {

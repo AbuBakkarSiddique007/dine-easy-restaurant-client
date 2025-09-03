@@ -2,9 +2,15 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import { BsFillCartPlusFill } from "react-icons/bs";
+import useCart from "../../hooks/useCart/useCart";
+
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
+    const [carts] = useCart()
+    console.log(carts);
+
 
     const hangleLogOut = () => {
         logOut()
@@ -68,6 +74,17 @@ const Navbar = () => {
         </li>
 
         <li>
+            <NavLink to={"/"}
+                className="px-4 mr-2 py-2 rounded-lg transition-colors"
+            >
+                <button className="btn">
+                    <BsFillCartPlusFill />
+                    <div className="badge badge-sm badge-secondary">+ {carts.length} </div>
+                </button>
+            </NavLink>
+        </li>
+
+        <li>
             <NavLink to={"/random"}
                 className={({ isActive }) =>
                     `px-4 mr-2 py-2 rounded-lg transition-colors ${isActive
@@ -80,14 +97,14 @@ const Navbar = () => {
 
         <li>
             {
-                user ? <>
+                user ? (<div>
                     <p className="text-lg text-green-600">
                         {user?.displayName}
                     </p>
                     <button onClick={hangleLogOut} className="btn btn-error">Logout</button>
 
-                </> :
-                    <>
+                </div>) :
+                    (<div>
 
                         <NavLink to={"/login"}
                             className={({ isActive }) =>
@@ -98,7 +115,7 @@ const Navbar = () => {
                             }
                         >Login</NavLink>
 
-                    </>
+                    </div>)
             }
         </li>
 
@@ -136,7 +153,7 @@ const Navbar = () => {
                 <a className="btn btn-ghost text-xl">Dine Easy Restaurant</a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="flex justify-center items-center menu menu-horizontal ">
                     {
                         NavOptions
                     }

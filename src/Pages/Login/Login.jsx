@@ -12,7 +12,7 @@ const Login = () => {
     const { loginUser } = useContext(AuthContext)
     const location = useLocation()
     const navigate = useNavigate()
-    console.log(location);
+    // console.log(location);
 
     const from = location.state?.from?.pathname || "/";
 
@@ -37,7 +37,7 @@ const Login = () => {
             email,
             password
         }
-        console.log(formData);
+        // console.log(formData);
 
         loginUser(email, password)
             .then(result => {
@@ -47,7 +47,7 @@ const Login = () => {
                     icon: "success",
                     draggable: true
                 });
-                
+
                 navigate(from, { replace: true });
 
             })

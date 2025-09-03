@@ -29,7 +29,6 @@ const ChefRecom = () => {
 
 
     if (loading) return <Loader></Loader>
-    console.log(menuData);
 
     return (
         <section>
