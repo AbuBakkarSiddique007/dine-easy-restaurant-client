@@ -8,12 +8,13 @@ import Register from "../Pages/Register/Register";
 import ContactUs from "../Pages/ContactUs/ContactUs/ContactUs";
 import Random from "../Shared/Random/Random";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../Components/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
-        errorElement: <h1>404! Not Founded!</h1>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
