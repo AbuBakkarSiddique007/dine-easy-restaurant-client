@@ -74,16 +74,21 @@ const Navbar = () => {
         </li>
 
         <li>
-            <NavLink to={"/"}
-                className="px-4 mr-2 py-2 rounded-lg transition-colors"
+            <NavLink to={"/dashboard/cart"}
+                className={({ isActive }) =>
+                    `px-4 mr-2 py-2 rounded-lg transition-colors ${isActive
+                        ? 'bg-green-400 text-white'
+                        : ''
+                    }`
+                }
             >
-                <button className="btn">
-                    <BsFillCartPlusFill />
-                    <div className="badge badge-sm badge-secondary">+ {carts.length} </div>
+                <button className="btn btn-outline btn-success">
+                    <div className="badge badge-sm badge-secondary">
+                        <BsFillCartPlusFill />
+                        + {carts.length} </div>
                 </button>
             </NavLink>
         </li>
-
         <li>
             <NavLink to={"/random"}
                 className={({ isActive }) =>

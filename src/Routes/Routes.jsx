@@ -9,6 +9,9 @@ import ContactUs from "../Pages/ContactUs/ContactUs/ContactUs";
 import Random from "../Shared/Random/Random";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
+import Dashboard from "../Layout/Dashboard";
+import Cart from "../Pages/Dashboard/Cart/Cart";
+import Reservation from "../Pages/Dashboard/Reservation/Reservation";
 
 export const router = createBrowserRouter([
     {
@@ -52,6 +55,20 @@ export const router = createBrowserRouter([
                 </PrivateRoute>
             }
 
+        ]
+    },
+    {
+        path: "dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: "cart",
+                element: <Cart></Cart>
+            },
+            {
+                path: "reservation",
+                element: <Reservation></Reservation>
+            }
         ]
     }
 ])
