@@ -12,6 +12,7 @@ import ErrorPage from "../Components/ErrorPage/ErrorPage";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../Pages/Dashboard/Cart/Cart";
 import Reservation from "../Pages/Dashboard/Reservation/Reservation";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 
 export const router = createBrowserRouter([
     {
@@ -68,6 +69,12 @@ export const router = createBrowserRouter([
             {
                 path: "reservation",
                 element: <Reservation></Reservation>
+            },
+
+            // Admin:
+            {
+                path: "all-users",
+                element: <AllUsers></AllUsers>
             }
         ]
     }

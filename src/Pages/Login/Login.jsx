@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic/useAxiosPublic";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 
 const Login = () => {
@@ -237,18 +238,22 @@ const Login = () => {
                                     </div>
                                 </div>
 
+                                {/* Todo: Make a social component for social login */}
+
                                 <div className="grid grid-cols-2 gap-3">
                                     <button className="flex items-center justify-center py-2.5 px-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white/80">
 
                                         <span
                                             onClick={handleGoogleLogin}
 
-                                            className="text-sm font-medium text-gray-700"
+                                            className="flex justify-center items-center gap-2 text-sm font-medium text-gray-700"
 
-                                        >Google</span>
+                                        > <FaGoogle></FaGoogle> <span>Google</span></span>
                                     </button>
                                     <button className="flex items-center justify-center py-2.5 px-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white/80">
-                                        <span className="text-sm font-medium text-gray-700">GitHub</span>
+                                        <span className="flex justify-center items-center gap-2 text-sm font-medium text-gray-700">
+                                            <FaGithub></FaGithub>
+                                            GitHub</span>
                                     </button>
                                 </div>
 
