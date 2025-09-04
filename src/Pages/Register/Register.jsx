@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthBg from "../../assets/images/Auth/authentication.png";
 import AuthImg1 from "../../assets/images/Auth/authentication2.png";
 
@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic/useAxiosPublic";
 
 
 const Register = () => {
@@ -34,6 +35,12 @@ const Register = () => {
 
     const { createUser, updateUserProfile } = useContext(AuthContext)
     const naviaget = useNavigate()
+    const axiosPublic = useAxiosPublic()
+
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const from = location.state?.from?.pathname || "/";
 
     const {
         register,
@@ -52,13 +59,25 @@ const Register = () => {
                 console.log(user);
                 updateUserProfile(data.name, data.photo)
                     .then(() => {
-                        reset()
-                        Swal.fire({
-                            title: "User Profile Updated!",
-                            icon: "success",
-                            draggable: true
-                        });
-                        naviaget("/")
+
+                        const userdata = {
+                            name: data.name,
+                            email: data.email
+                        }
+
+                        // Post req:
+                        axiosPublic.post("/users", userdata)
+                            .then(res => {
+                                console.log(res.data);
+
+                                reset()
+                                Swal.fire({
+                                    title: "User Profile Updated!",
+                                    icon: "success",
+                                    draggable: true
+                                });
+                                navigate(from, { replace: true });
+                            })
                     })
                     .catch((error) => {
                         Swal.fire({

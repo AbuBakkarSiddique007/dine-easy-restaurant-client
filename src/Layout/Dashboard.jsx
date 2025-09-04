@@ -85,7 +85,7 @@ const Dashboard = () => {
                     </li>
 
                     {/*---------------------------- Divider---------------------- */}
-                    <div class="divider"></div>
+                    <div className="divider"></div>
 
                     <li className="w-full">
                         <NavLink

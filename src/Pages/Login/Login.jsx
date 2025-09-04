@@ -3,19 +3,18 @@ import AuthBg from "../../assets/images/Auth/authentication.png";
 import AuthImg1 from "../../assets/images/Auth/authentication2.png";
 
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
-import { useContext, useEffect, useRef, useState } from "react";
-import { AuthContext } from "../../provider/AuthProvider/AuthProvider";
+import { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic/useAxiosPublic";
 
 
 const Login = () => {
-    const { loginUser } = useContext(AuthContext)
+    const { loginUser, LoginWithGoogle } = useAuth()
+    const axiosPublic = useAxiosPublic()
     const location = useLocation()
     const navigate = useNavigate()
-    // console.log(location);
-
     const from = location.state?.from?.pathname || "/";
-
 
     const captchaRef = useRef(null)
     const [disable, setDisable] = useState(true)
@@ -33,11 +32,11 @@ const Login = () => {
         const email = form.email.value
         const password = form.password.value
 
+        // eslint-disable-next-line no-unused-vars
         const formData = {
             email,
             password
         }
-        // console.log(formData);
 
         loginUser(email, password)
             .then(result => {
@@ -49,8 +48,54 @@ const Login = () => {
                 });
 
                 navigate(from, { replace: true });
-
             })
+    }
+
+    const handleGoogleLogin = () => {
+        LoginWithGoogle()
+            .then(res => {
+                const user = res.user
+
+                const userData = {
+                    name: user.displayName,
+                    email: user.email,
+                };
+
+                // Save user to db:
+                axiosPublic.post("/users", userData)
+                    .then(response => {
+                        console.log("User saved to database:", response.data);
+
+                        Swal.fire({
+                            title: "Successfully Logged In with Google!",
+                            icon: "success",
+                            draggable: true
+                        });
+
+                        // Navigate to intended page
+                        navigate(from, { replace: true });
+                    })
+                    .catch(error => {
+                        console.error("Error saving user to database:", error);
+                        // Still navigate even if database save fails
+                        Swal.fire({
+                            title: "Logged in successfully!",
+                            text: "Welcome back!",
+                            icon: "success",
+                            draggable: true
+                        });
+                        navigate(from, { replace: true });
+                    });
+            })
+            .catch(error => {
+                console.error("Google login error:", error);
+                Swal.fire({
+                    title: "Login Failed",
+                    text: error.message,
+                    icon: "error",
+                    draggable: true
+                });
+            });
     }
 
     const handleCaptcha = (e) => {
@@ -194,7 +239,13 @@ const Login = () => {
 
                                 <div className="grid grid-cols-2 gap-3">
                                     <button className="flex items-center justify-center py-2.5 px-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white/80">
-                                        <span className="text-sm font-medium text-gray-700">Google</span>
+
+                                        <span
+                                            onClick={handleGoogleLogin}
+
+                                            className="text-sm font-medium text-gray-700"
+
+                                        >Google</span>
                                     </button>
                                     <button className="flex items-center justify-center py-2.5 px-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white/80">
                                         <span className="text-sm font-medium text-gray-700">GitHub</span>
@@ -211,7 +262,6 @@ const Login = () => {
                                         >
                                             Create an account
                                         </Link>
-
                                     </p>
                                 </div>
                             </div>
