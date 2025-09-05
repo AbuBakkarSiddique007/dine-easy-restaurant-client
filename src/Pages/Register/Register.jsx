@@ -52,44 +52,49 @@ const Register = () => {
     } = useForm()
 
     const onSubmit = (data) => {
-        // console.log(data)
+        console.log(data);
 
         createUser(data.email, data.password)
             .then(userCredential => {
-                const user = userCredential.user
+                const user = userCredential.user;
                 console.log(user);
-                updateUserProfile(data.name, data.photo)
-                    .then(() => {
 
-                        const userdata = {
-                            name: data.name,
-                            email: data.email
-                        }
-
-                        // Post req:
-                        axiosPublic.post("/users", userdata)
-                            .then(res => {
-                                console.log(res.data);
-
-                                reset()
-                                Swal.fire({
-                                    title: "User Profile Updated!",
-                                    icon: "success",
-                                    draggable: true
-                                });
-                                navigate(from, { replace: true });
-                            })
-                    })
-                    .catch((error) => {
-                        Swal.fire({
-                            title: "An error occurred",
-                            icon: "success",
-                            draggable: true
-                        });
-                        console.log("error--->", error);
-                    });
+                // Update user profile with name and photoURL
+                return updateUserProfile(data.name, data.photoURL);
             })
-    }
+            .then(() => {
+                console.log("Profile updated successfully");
+
+                const userdata = {
+                    name: data.name,
+                    email: data.email
+                };
+
+                // Post request to save user in db
+                return axiosPublic.post("/users", userdata);
+            })
+            .then(res => {
+                console.log(res.data);
+
+                reset();
+                Swal.fire({
+                    title: "Account Created Successfully!",
+                    text: "Welcome to our platform!",
+                    icon: "success",
+                    draggable: true
+                });
+                navigate(from, { replace: true });
+            })
+            .catch((error) => {
+                console.log("error--->", error);
+                Swal.fire({
+                    title: "Registration Failed",
+                    text: error.message || "Something went wrong. Please try again.",
+                    icon: "error",
+                    draggable: true
+                });
+            });
+    };
 
     return (
         <div

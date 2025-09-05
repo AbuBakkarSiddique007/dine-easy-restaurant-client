@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../../firebase/firebase.config";
+import useAxiosPublic from "../../hooks/useAxiosPublic/useAxiosPublic";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null)
@@ -8,6 +9,7 @@ export const AuthContext = createContext(null)
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const axiosPublic = useAxiosPublic()
 
     const googleProvider = new GoogleAuthProvider();
 
@@ -31,16 +33,12 @@ const AuthProvider = ({ children }) => {
 
     // Update User Profile:
     const updateUserProfile = (name, photo) => {
-        setLoading(true)
-        updateProfile(auth.currentUser, {
-            displayName: name, photoURL: photo
-        }).then(() => {
-            console.log("Profile updated!");
+        setLoading(true);
 
-        }).catch((error) => {
-            console.log("An error occurred", error);
-
-        });
+        return updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL: photo
+        })
     }
 
     // Google Login:
@@ -63,18 +61,30 @@ const AuthProvider = ({ children }) => {
                 setUser(currentUser)
                 setLoading(false)
 
+                // Get token and store client:
+                const userData = {
+                    email: currentUser.email
+                }
+                axiosPublic.post('/jwt', userData)
+                    .then(res => {
+                        console.log("Tokeeeeen--->", res.data.token);
+                        if (res.data.token) {
+                            localStorage.setItem('access-token', res.data.token)
+                        }
+                    })
             }
             else {
                 setUser(null)
                 setLoading(false)
 
+                // Remove token(If token stored in client)
+                localStorage.removeItem('access-token')
             }
         })
         return () => {
             return unsubscribe()
         }
-
-    }, [])
+    }, [axiosPublic])
 
 
     const userInfo = {
