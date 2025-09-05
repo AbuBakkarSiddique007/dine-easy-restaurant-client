@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic/useAxiosPublic";
+import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
 
 
 const Register = () => {
@@ -273,14 +274,7 @@ const Register = () => {
 
 
                                 {/* Todo: Make a social component for social login */}
-                                <div className="grid grid-cols-2 gap-3">
-                                    <button className="flex items-center justify-center py-2.5 px-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white/80">
-                                        <span className="text-sm font-medium text-gray-700">Google</span>
-                                    </button>
-                                    <button className="flex items-center justify-center py-2.5 px-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white/80">
-                                        <span className="text-sm font-medium text-gray-700">GitHub</span>
-                                    </button>
-                                </div>
+                                <SocialLogin></SocialLogin>
 
                                 <div className="text-center pt-4">
                                     <p className="text-gray-600 text-sm">

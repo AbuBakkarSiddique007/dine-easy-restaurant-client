@@ -29,6 +29,7 @@ const AllUsers = () => {
                 <div className='text-2xl font-bold'>
                     Total Users: {users.length}
                 </div>
+                
             </div>
         </div>
     );
