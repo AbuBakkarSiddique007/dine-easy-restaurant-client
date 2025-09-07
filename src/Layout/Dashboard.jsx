@@ -3,10 +3,12 @@ import { FaCalendarCheck, FaCartShopping, FaShop } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart/useCart";
 import useAdmin from "../hooks/useAdmin/useAdmin";
+import useMenu from "../hooks/useMenu/useMenu";
 
 const Dashboard = () => {
     const [cart] = useCart()
     const [isAdmin] = useAdmin()
+    const [menu] = useMenu()
     console.log("isAdmin:", isAdmin);
 
     return (
@@ -54,7 +56,7 @@ const Dashboard = () => {
                                     }
                                 >
                                     <FaBars />
-                                    Manage Items
+                                    Manage Items ({menu.length})
                                 </NavLink>
                             </li>
 

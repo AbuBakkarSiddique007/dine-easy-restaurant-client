@@ -1,20 +1,45 @@
 import SectionTitles from '../../../Components/SectionTitles/SectionTitles';
+import useAxiosSecure from '../../../hooks/useAxiosSecure/useAxiosSecure';
 import useMenu from '../../../hooks/useMenu/useMenu';
 import { MdDeleteForever, MdEditDocument } from 'react-icons/md';
+import Swal from 'sweetalert2'
+
 
 const ManageItems = () => {
-    const [menu] = useMenu()
-
-    console.log(menu.length);
+    const [menu, , refetch] = useMenu()
+    const axiosSecure = useAxiosSecure()
 
     const handleUpdate = (item) => {
         console.log(item);
 
-
     }
     const handleDelete = (item) => {
 
-        console.log(item);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await axiosSecure.delete(`/menu/${item._id}`)
+
+                if (res.data.deletedCount > 0) {
+                    refetch()
+
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your item has been deleted.",
+                        icon: "success"
+                    });
+                }
+            } else {
+                throw new Error('Failed to delete item');
+            }
+        });
 
     }
 
