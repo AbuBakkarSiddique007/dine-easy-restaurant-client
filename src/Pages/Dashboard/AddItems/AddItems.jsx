@@ -4,7 +4,7 @@ import { FaUtensils, FaUpload } from 'react-icons/fa';
 import useAxiosPublic from '../../../hooks/useAxiosPublic/useAxiosPublic';
 import useAxiosSecure from '../../../hooks/useAxiosSecure/useAxiosSecure';
 import Swal from 'sweetalert2'
-
+import SectionTitles from '../../../Components/SectionTitles/SectionTitles';
 
 const img_hosting_key = import.meta.env.VITE_IMG_HOSTING_KEY
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`
@@ -70,11 +70,10 @@ const AddItemForm = () => {
     };
     return (
         <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-            <div className="text-center mb-8">
-                <FaUtensils className="text-4xl text-orange-500 mx-auto mb-4" />
-                <h2 className="text-3xl font-bold text-gray-800">Add New Item</h2>
-                <p className="text-gray-600 mt-2">Add a new menu item to your restaurant</p>
-            </div>
+            <SectionTitles
+                heading="Add New Item"
+                subHeading="What's new?"
+            ></SectionTitles>
 
             <form
                 onSubmit={handleSubmit(onSubmit)}
@@ -203,35 +202,8 @@ const AddItemForm = () => {
                     Add Item
                 </button>
             </form>
-        </div>
+        </div >
     );
 };
 
 export default AddItemForm;
-
-
-
-
-
-
-
-// import React from 'react';
-// import SectionTitles from '../../../Components/SectionTitles/SectionTitles';
-
-// const AddItems = () => {
-//     return (
-//         <div>
-//             <SectionTitles
-//                 heading="ADD AN ITEM"
-//                 subHeading="What's new?"
-//             >
-//             </SectionTitles>
-
-//             <div>
-
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default AddItems;
