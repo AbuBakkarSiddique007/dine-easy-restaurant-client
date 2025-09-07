@@ -17,9 +17,11 @@ const Dashboard = () => {
                 <ul className="menu uppercase flex flex-col justify-start items-start p-4">
                     {
                         isAdmin ? <>
+
+                        {/* Admin routes */}
                             <li className="w-full">
                                 <NavLink
-                                    to={"/dashboard/admin-home"}
+                                    to={"admin-home"}
                                     className={({ isActive }) =>
                                         `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
                                         }`
@@ -32,7 +34,7 @@ const Dashboard = () => {
 
                             <li className="w-full">
                                 <NavLink
-                                    to={"/dashboard/add-items"}
+                                    to={"add-items"}
                                     className={({ isActive }) =>
                                         `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
                                         }`
@@ -45,7 +47,7 @@ const Dashboard = () => {
 
                             <li className="w-full">
                                 <NavLink
-                                    to={"/dashboard/manage-items"}
+                                    to={"manage-items"}
                                     className={({ isActive }) =>
                                         `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
                                         }`
@@ -58,7 +60,7 @@ const Dashboard = () => {
 
                             <li className="w-full">
                                 <NavLink
-                                    to={"/dashboard/manage-bookings"}
+                                    to={"manage-bookings"}
                                     className={({ isActive }) =>
                                         `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
                                         }`
@@ -71,7 +73,7 @@ const Dashboard = () => {
 
                             <li className="w-full">
                                 <NavLink
-                                    to={"/dashboard/all-users"}
+                                    to={"all-users"}
                                     className={({ isActive }) =>
                                         `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
                                         }`
@@ -84,9 +86,11 @@ const Dashboard = () => {
 
                         </> :
                             <>
+
+                            {/* Normal users routes */}
                                 <li className="w-full">
                                     <NavLink
-                                        to={"/dashboard/home"}
+                                        to={"/users-home"}
                                         className={({ isActive }) =>
                                             `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
                                             }`
@@ -98,7 +102,7 @@ const Dashboard = () => {
                                 </li>
                                 <li className="w-full">
                                     <NavLink
-                                        to={"/dashboard/reservation"}
+                                        to={"reservation"}
                                         className={({ isActive }) =>
                                             `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
                                             }`
@@ -110,7 +114,7 @@ const Dashboard = () => {
                                 </li>
                                 <li className="w-full">
                                     <NavLink
-                                        to={"/dashboard/payment-history"}
+                                        to={"payment-history"}
                                         className={({ isActive }) =>
                                             `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
                                             }`
@@ -122,7 +126,7 @@ const Dashboard = () => {
                                 </li>
                                 <li className="w-full">
                                     <NavLink
-                                        to={"/dashboard/cart"}
+                                        to={"cart"}
                                         className={({ isActive }) =>
                                             `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
                                             }`
@@ -134,7 +138,7 @@ const Dashboard = () => {
                                 </li>
                                 <li className="w-full">
                                     <NavLink
-                                        to={"/dashboard/add-review"}
+                                        to={"add-review"}
                                         className={({ isActive }) =>
                                             `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
                                             }`
@@ -146,7 +150,7 @@ const Dashboard = () => {
                                 </li>
                                 <li className="w-full">
                                     <NavLink
-                                        to={"/dashboard/my-booking"}
+                                        to={"my-booking"}
                                         className={({ isActive }) =>
                                             `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
                                             }`
