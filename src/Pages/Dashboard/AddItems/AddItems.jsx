@@ -35,9 +35,9 @@ const AddItemForm = () => {
             if (res.data.success) {
                 // Create menu item
                 const menuItem = {
-                    name: data.recipeName,
+                    name: data.name,
                     category: data.category,
-                    details: data.recipeDetails,
+                    recipe: data.recipe,
                     price: parseFloat(data.price),
                     image: res.data.data.display_url
                 };
@@ -53,7 +53,7 @@ const AddItemForm = () => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: `${data.recipeName} added to the menu`,
+                        title: `${data.name} added to the menu`,
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -86,15 +86,15 @@ const AddItemForm = () => {
                     </label>
                     <input
                         type="text"
-                        {...register("recipeName", {
-                            required: true
+                        {...register("name", {
+                            required: "Recipe name is required"
                         })}
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition ${errors.recipeName ? 'border-red-500' : 'border-gray-300'
+                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition ${errors.name ? 'border-red-500' : 'border-gray-300'
                             }`}
                         placeholder="Enter recipe name"
                     />
-                    {errors.recipeName && (
-                        <p className="text-red-500 text-sm mt-1">{errors.recipeName.message}</p>
+                    {errors.name && (
+                        <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
                     )}
                 </div>
 
@@ -157,20 +157,20 @@ const AddItemForm = () => {
                         Recipe Details *
                     </label>
                     <textarea
-                        {...register("recipeDetails", {
-                            required: true,
+                        {...register("recipe", {
+                            required: "Recipe details are required",
                             minLength: {
                                 value: 10,
                                 message: "Recipe details must be at least 10 characters"
                             }
                         })}
                         rows={4}
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition resize-vertical ${errors.recipeDetails ? 'border-red-500' : 'border-gray-300'
+                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition resize-vertical ${errors.recipe ? 'border-red-500' : 'border-gray-300'
                             }`}
                         placeholder="Describe the recipe, ingredients, cooking method..."
                     />
-                    {errors.recipeDetails && (
-                        <p className="text-red-500 text-sm mt-1">{errors.recipeDetails.message}</p>
+                    {errors.recipe && (
+                        <p className="text-red-500 text-sm mt-1">{errors.recipe.message}</p>
                     )}
                 </div>
 

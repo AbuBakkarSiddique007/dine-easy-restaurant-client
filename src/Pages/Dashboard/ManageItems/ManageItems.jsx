@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import SectionTitles from '../../../Components/SectionTitles/SectionTitles';
 import useAxiosSecure from '../../../hooks/useAxiosSecure/useAxiosSecure';
 import useMenu from '../../../hooks/useMenu/useMenu';
@@ -9,10 +10,6 @@ const ManageItems = () => {
     const [menu, , refetch] = useMenu()
     const axiosSecure = useAxiosSecure()
 
-    const handleUpdate = (item) => {
-        console.log(item);
-
-    }
     const handleDelete = (item) => {
 
         Swal.fire({
@@ -93,13 +90,16 @@ const ManageItems = () => {
                                             ${item.price.toFixed(2)}
                                         </td>
                                         <th>
-                                            <button
-                                                className="btn btn-error text-2xl"
-                                                onClick={() => handleUpdate(item)}
-                                                title="Delete item"
+                                            <Link
+                                                to={`/dashboard/UpdateItem/${item._id}`}
                                             >
-                                                <MdEditDocument />
-                                            </button>
+                                                <button
+                                                    className="btn btn-error text-2xl"
+                                                    title="Delete item"
+                                                >
+                                                    <MdEditDocument />
+                                                </button>
+                                            </Link>
                                         </th>
                                         <th>
                                             <button
