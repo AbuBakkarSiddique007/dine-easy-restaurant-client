@@ -4,6 +4,7 @@ import SectionTitles from '../../../Components/SectionTitles/SectionTitles';
 import { MdDeleteForever } from "react-icons/md";
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure/useAxiosSecure';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const [cart, refetch] = useCart();
@@ -79,12 +80,16 @@ const Cart = () => {
                     <p>
                         Total price: ${totalPrice.toFixed(2)}
                     </p>
-                    <button
-                        className='btn btn-accent'
-                        disabled={cart.length === 0}
+                    <Link
+                        to="/dashboard/payment"
                     >
-                        Pay
-                    </button>
+                        <button
+                            className='btn btn-accent'
+                            disabled={cart.length === 0}
+                        >
+                            Pay
+                        </button>
+                    </Link>
                 </div>
                 <div>
                     <div className="overflow-x-auto">
