@@ -92,7 +92,7 @@ const Dashboard = () => {
                             {/* Normal users routes */}
                                 <li className="w-full">
                                     <NavLink
-                                        to={"/users-home"}
+                                        to={"users-home"}
                                         className={({ isActive }) =>
                                             `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
                                             }`

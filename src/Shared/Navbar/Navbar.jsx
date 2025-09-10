@@ -1,14 +1,16 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import useCart from "../../hooks/useCart/useCart";
+import useAdmin from "../../hooks/useAdmin/useAdmin";
 
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
     const [carts] = useCart()
+    const [isAdmin] = useAdmin()
     console.log(carts);
 
 
@@ -48,6 +50,32 @@ const Navbar = () => {
             >Our Menu</NavLink>
 
         </li>
+
+        {
+            user && isAdmin && <li>
+                <NavLink to={"/dashboard/admin-home"}
+                    className={({ isActive }) =>
+                        `px-4 mr-2 py-2 rounded-lg transition-colors ${isActive
+                            ? 'bg-green-400 text-white'
+                            : ''
+                        }`
+                    }
+                >Dashboard</NavLink>
+            </li>
+        }
+        {
+            user && !isAdmin && <li>
+                <NavLink to={"/dashboard/users-home"}
+                    className={({ isActive }) =>
+                        `px-4 mr-2 py-2 rounded-lg transition-colors ${isActive
+                            ? 'bg-green-400 text-white'
+                            : ''
+                        }`
+                    }
+                >Dashboard</NavLink>
+            </li>
+        }
+
 
         <li>
             <NavLink to={"/order"}
