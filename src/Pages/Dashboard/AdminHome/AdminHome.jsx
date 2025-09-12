@@ -64,7 +64,7 @@ const AdminHome = () => {
         );
     };
 
-    // Pie chart data 
+    // Pie chart data
     const pieChartData = chartData.map(data => ({
         name: data.category || 'Unknown',
         value: data.revenue || 0
