@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const axiosPublic = axios.create({
+    // baseURL: "https://dine-easy-restaurant-server.vercel.app"
     baseURL: "http://localhost:5000"
 })
 

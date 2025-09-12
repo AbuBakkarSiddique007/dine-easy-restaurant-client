@@ -9,7 +9,7 @@ const Dashboard = () => {
     const [cart] = useCart()
     const [isAdmin] = useAdmin()
     const [menu] = useMenu()
-    console.log("isAdmin:", isAdmin);
+    // console.log("isAdmin:", isAdmin);
 
     return (
         <div className="flex">

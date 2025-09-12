@@ -49,7 +49,7 @@ const AuthProvider = ({ children }) => {
 
 
     useEffect(() => {
-        console.log("User state changed:", user);
+        // console.log("User state changed:", user);
     }, [user])
 
 

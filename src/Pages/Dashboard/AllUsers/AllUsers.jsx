@@ -16,12 +16,12 @@ const AllUsers = () => {
             return res.data
         }
     })
-    console.log(users);
+    // console.log(users);
     // Email, Name
 
 
     const handleDeleteUser = (user) => {
-        console.log("clicked delete btn", user);
+        // console.log("clicked delete btn", user);
 
         Swal.fire({
             title: "Are you sure?",

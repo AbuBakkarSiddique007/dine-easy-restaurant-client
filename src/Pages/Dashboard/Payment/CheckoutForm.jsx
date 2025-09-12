@@ -24,7 +24,7 @@ const CheckoutForm = () => {
         if (totalPrice > 0) {
             axiosSecure.post("/create-payment-intent", { price: totalPrice })
                 .then(res => {
-                    console.log(res.data.clientSecret);
+                    // console.log(res.data.clientSecret);
                     setClientSecret(res.data.clientSecret)
                 })
         }
@@ -50,10 +50,10 @@ const CheckoutForm = () => {
         });
 
         if (error) {
-            console.log('[error]', error);
+            // console.log('[error]', error);
             setError(error.message)
         } else {
-            console.log('[PaymentMethod]', paymentMethod);
+            // console.log('[PaymentMethod]', paymentMethod);
             setError('')
         }
 
@@ -70,13 +70,13 @@ const CheckoutForm = () => {
             }
         })
         if (confirmError) {
-            console.log('confirm error');
+            // console.log('confirm error');
 
         }
         else {
-            console.log('payment intent', paymentIntent);
+            // console.log('payment intent', paymentIntent);
             if (paymentIntent.status === 'succeeded') {
-                console.log('Transaction Id', paymentIntent.id);
+                // console.log('Transaction Id', paymentIntent.id);
                 setTransactionId(paymentIntent.id)
 
                 // Now save the payment history in db

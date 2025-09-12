@@ -52,18 +52,18 @@ const Register = () => {
     } = useForm()
 
     const onSubmit = (data) => {
-        console.log(data);
+        // console.log(data);
 
         createUser(data.email, data.password)
             .then(userCredential => {
                 const user = userCredential.user;
-                console.log(user);
+                // console.log(user);
 
                 // Update user profile with name and photoURL
                 return updateUserProfile(data.name, data.photoURL);
             })
             .then(() => {
-                console.log("Profile updated successfully");
+                // console.log("Profile updated successfully");
 
                 const userdata = {
                     name: data.name,
@@ -74,7 +74,7 @@ const Register = () => {
                 return axiosPublic.post("/users", userdata);
             })
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
 
                 reset();
                 Swal.fire({

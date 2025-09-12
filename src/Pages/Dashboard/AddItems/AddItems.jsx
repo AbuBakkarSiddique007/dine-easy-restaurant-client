@@ -22,7 +22,7 @@ const AddItemForm = () => {
 
     const onSubmit = async (data) => {
         try {
-            console.log("Form Data:", data);
+            // console.log("Form Data:", data);
 
             // Upload image
             const imageFile = { image: data.image[0] };

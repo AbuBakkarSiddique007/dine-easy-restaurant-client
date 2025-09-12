@@ -6,7 +6,7 @@ const useMenu = () => {
     // const [menu, setMenu] = useState([])
     // const [loading, setLoading] = useState(true)
     // useEffect(() => {
-    //     fetch("http://localhost:5000/menu")
+    //     fetch("https://dine-easy-restaurant-server.vercel.app/menu")
     //         .then((result) => result.json())
     //         .then((data) => {
     //             setMenu(data)

@@ -13,9 +13,9 @@ const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`
 const UpdateItem = () => {
     const { name, recipe, image, category, price, _id } = useLoaderData()
     const navigate = useNavigate()
-    console.log("RRR",recipe);
+    // console.log("RRR",recipe);
 
-    console.log('Item to update:', { name, recipe, image, category, price, _id });
+    // console.log('Item to update:', { name, recipe, image, category, price, _id });
 
     const {
         register,
@@ -36,14 +36,14 @@ const UpdateItem = () => {
 
     const onSubmit = async (data) => {
         try {
-            console.log("Form Data:", data);
+            // console.log("Form Data:", data);
 
             // Keep existing image by default
             let imageUrl = image;
 
             // Only upload new image if user selected a file
             if (data.image && data.image.length > 0) {
-                console.log("Uploading new image...");
+                // console.log("Uploading new image...");
                 const imageFile = { image: data.image[0] };
                 const res = await axiosPublic.post(img_hosting_api, imageFile, {
                     headers: {
@@ -53,7 +53,7 @@ const UpdateItem = () => {
 
                 if (res.data.success) {
                     imageUrl = res.data.data.display_url;
-                    console.log("New image uploaded:", imageUrl);
+                    // console.log("New image uploaded:", imageUrl);
                 } else {
                     throw new Error("Image upload failed");
                 }
@@ -68,11 +68,11 @@ const UpdateItem = () => {
                 image: imageUrl
             };
 
-            console.log("Updating item with:", updatedMenuItem);
+            // console.log("Updating item with:", updatedMenuItem);
 
             const menuResponse = await axiosSecure.patch(`/menu/${_id}`, updatedMenuItem);
 
-            console.log("Update response:", menuResponse.data);
+            // console.log("Update response:", menuResponse.data);
 
             if (menuResponse.data.modifiedCount > 0 || menuResponse.data.acknowledged) {
                 Swal.fire({

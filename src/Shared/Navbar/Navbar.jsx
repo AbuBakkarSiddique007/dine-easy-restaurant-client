@@ -11,13 +11,13 @@ const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
     const [carts] = useCart()
     const [isAdmin] = useAdmin()
-    console.log(carts);
+    // console.log(carts);
 
 
     const hangleLogOut = () => {
         logOut()
             .then(() => {
-                console.log("User logout!!!!");
+                // console.log("User logout!!!!");
                 Swal.fire({
                     title: "User Successfully LogOut!",
                     icon: "success",

@@ -14,10 +14,10 @@ const FoodCard = ({ item }) => {
     const navigate = useNavigate()
 
     const handleAddToCart = (food) => {
-        console.log(food);
+        // console.log(food);
 
         if (user && user.email) {
-            console.log("User exist", user.email);
+            // console.log("User exist", user.email);
             const cartItem = {
                 menuId: _id,
                 email: user.email,
@@ -28,7 +28,7 @@ const FoodCard = ({ item }) => {
 
             axiosSecure.post("/carts", cartItem)
                 .then((result) => {
-                    console.log(result.data);
+                    // console.log(result.data);
 
                     if (result.data.insertedId) {
                         Swal.fire({
@@ -45,7 +45,7 @@ const FoodCard = ({ item }) => {
 
                 })
                 .catch((error) => {
-                    console.log("Error:", error);
+                    // console.log("Error:", error);
                 })
         }
         else {

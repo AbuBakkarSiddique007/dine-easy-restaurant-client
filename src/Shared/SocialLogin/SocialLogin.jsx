@@ -26,7 +26,7 @@ const SocialLogin = () => {
                 // Save user to db:
                 axiosPublic.post("/users", userData)
                     .then(response => {
-                        console.log("User saved to database:", response.data);
+                        // console.log("User saved to database:", response.data);
 
                         Swal.fire({
                             title: "Successfully Logged In with Google!",

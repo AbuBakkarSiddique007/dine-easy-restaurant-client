@@ -21,6 +21,7 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
 import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import UserHome from "../Pages/Dashboard/UserHome/UserHome";
+import ReviewForm from "../Pages/Home/ReviewForm/ReviewForm";
 
 export const router = createBrowserRouter([
     {
@@ -82,6 +83,11 @@ export const router = createBrowserRouter([
                 element: <Cart></Cart>
             },
             {
+                path: 'add-review',
+                element: <ReviewForm></ReviewForm>
+
+            },
+            {
                 path: 'payment',
                 element: <Payment></Payment>
             },
@@ -121,6 +127,7 @@ export const router = createBrowserRouter([
                 element: <AdminRoute>
                     <UpdateItem></UpdateItem>
                 </AdminRoute>,
+                // loader: ({ params }) => fetch(`https://dine-easy-restaurant-server.vercel.app/menu/${params.id}`)
                 loader: ({ params }) => fetch(`http://localhost:5000/menu/${params.id}`)
             },
             {

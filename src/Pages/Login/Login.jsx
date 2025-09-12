@@ -39,7 +39,7 @@ const Login = () => {
 
         loginUser(email, password)
             .then(result => {
-                console.log("User Logged In --->", result.user);
+                // console.log("User Logged In --->", result.user);
                 Swal.fire({
                     title: "User Successfully LogIn",
                     icon: "success",
@@ -56,15 +56,13 @@ const Login = () => {
 
         if (validateCaptcha(userCaptchaValue) === true) {
             setDisable(false)
-            console.log("Captcha Matched");
+            // console.log("Captcha Matched");
 
         }
         else {
             setDisable(true)
-            console.log("Not matched");
+            // console.log("Not matched");
         }
-
-
     }
 
     return (
