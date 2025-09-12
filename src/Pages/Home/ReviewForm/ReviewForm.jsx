@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { FaStar, FaRegStar, FaSmile, FaMeh, FaFrown, FaPaperPlane } from 'react-icons/fa';
 import SectionTitles from '../../../Components/SectionTitles/SectionTitles';
 import useAuth from '../../../hooks/useAuth/useAuth';
-import useAxiosSecure from '../../../hooks/useAxiosSecure/useAxiosSecure';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../../../hooks/useAxiosPublic/useAxiosPublic';
 
 const ReviewForm = () => {
     const [rating, setRating] = useState(0);
@@ -12,8 +12,7 @@ const ReviewForm = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const { user } = useAuth();
-    const axiosSecure = useAxiosSecure();
-
+    const axiosPublic = useAxiosPublic()
     const handleStarClick = (selectedRating) => setRating(selectedRating);
     const handleStarHover = (hoveredStar) => setHoveredRating(hoveredStar);
     const handleStarLeave = () => setHoveredRating(0);
@@ -60,7 +59,7 @@ const ReviewForm = () => {
                 userPhoto: user?.photoURL || null
             };
 
-            const response = await axiosSecure.post('/reviews', reviewData);
+            const response = await axiosPublic.post('/reviews', reviewData);
 
             if (response.data.insertedId) {
                 setRating(0);

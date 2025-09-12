@@ -1,11 +1,10 @@
 import React from 'react';
+import UnderConstruction from '../../../Shared/UnderConstruction/UnderConstruction';
 
 const Reservation = () => {
     return (
-        <div>
-            <h1>
-                I am from Reservation Component!
-            </h1>
+        <div className="flex justify-center items-center h-full">
+            <UnderConstruction />
         </div>
     );
 };

@@ -22,6 +22,7 @@ import PaymentHistory from "../Pages/Dashboard/Payment/PaymentHistory";
 import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import UserHome from "../Pages/Dashboard/UserHome/UserHome";
 import ReviewForm from "../Pages/Home/ReviewForm/ReviewForm";
+import MyBooking from "../Pages/Dashboard/MyBooking/MyBooking";
 
 export const router = createBrowserRouter([
     {
@@ -100,6 +101,10 @@ export const router = createBrowserRouter([
             {
                 path: "reservation",
                 element: <Reservation></Reservation>
+            },
+            {
+                path: "my-booking",
+                element: <MyBooking></MyBooking>
             },
 
             // Admin routes
