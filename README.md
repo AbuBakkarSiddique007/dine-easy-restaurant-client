@@ -15,6 +15,12 @@ A full-stack restaurant management and food ordering web application. Built with
 - **Real-time Data**: Uses React Query for fast, up-to-date data fetching.
 
 ---
+## 🚀 Live Demo
+
+- **Client:** [https://dineeasyrestaurant.web.app](https://dineeasyrestaurant.web.app)
+- **Server:** [https://dine-easy-restaurant-server.vercel.app](https://dine-easy-restaurant-server.vercel.app)
+
+---
 
 ## Tech Stack
 
