@@ -111,7 +111,7 @@ const Navbar = () => {
             </NavLink>
         </li>
 
-        <li>
+        {/* <li>
             <NavLink to={"/random"}
                 className={({ isActive }) =>
                     `px-4 py-2 rounded-lg transition-all duration-300 hover:bg-green-500/20 hover:scale-105 ${isActive
@@ -120,7 +120,7 @@ const Navbar = () => {
                     }`
                 }
             >Random</NavLink>
-        </li>
+        </li> */}
     </>
 
     return (
