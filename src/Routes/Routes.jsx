@@ -23,6 +23,7 @@ import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import UserHome from "../Pages/Dashboard/UserHome/UserHome";
 import ReviewForm from "../Pages/Home/ReviewForm/ReviewForm";
 import MyBooking from "../Pages/Dashboard/MyBooking/MyBooking";
+import ManageBooking from "../Pages/Dashboard/ManageBooking/ManageBooking";
 
 export const router = createBrowserRouter([
     {
@@ -124,6 +125,13 @@ export const router = createBrowserRouter([
                 path: 'manage-items',
                 element: <AdminRoute>
                     <ManageItems></ManageItems>
+                </AdminRoute>
+
+            },
+            {
+                path: "manage-bookings",
+                element: <AdminRoute>
+                    <ManageBooking></ManageBooking>
                 </AdminRoute>
 
             },
