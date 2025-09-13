@@ -1,4 +1,4 @@
-import { FaBars, FaBook, FaCalendar, FaDollarSign, FaHamburger, FaHome, FaPlus, FaStar, FaUsers, FaUtensils, FaWallet } from "react-icons/fa";
+import { FaBars, FaBook, FaCalendar, FaDollarSign, FaHamburger, FaHome, FaStar, FaUsers, FaUtensils } from "react-icons/fa";
 import { FaCalendarCheck, FaCartShopping, FaShop } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart/useCart";
@@ -9,28 +9,35 @@ const Dashboard = () => {
     const [cart] = useCart()
     const [isAdmin] = useAdmin()
     const [menu] = useMenu()
-    // console.log("isAdmin:", isAdmin);
 
     return (
-        <div className="flex">
+        <div className="flex min-h-screen">
+            <div className="w-64 min-h-screen bg-gradient-to-b from-slate-800 via-slate-900 to-black shadow-2xl border-r border-slate-700">
+                <div className="p-6 border-b border-slate-700">
+                    <h2 className="text-xl font-bold text-white mb-1">
+                        {isAdmin ? 'Admin Panel' : 'Dashboard'}
+                    </h2>
+                    <p className="text-sm text-slate-400">
+                        {isAdmin ? 'Manage your restaurant' : 'Welcome back'}
+                    </p>
+                </div>
 
-            {/* Dashboard side bar */}
-            <div className="w-64 min-h-screen bg-orange-300">
-                <ul className="menu uppercase flex flex-col justify-start items-start p-4">
+                <ul className="menu flex flex-col justify-start items-start p-4 space-y-2">
                     {
                         isAdmin ? <>
-
-                        {/* Admin routes */}
+                            {/* Admin routes */}
                             <li className="w-full">
                                 <NavLink
                                     to={"admin-home"}
                                     className={({ isActive }) =>
-                                        `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
+                                        `flex items-center gap-4 p-4 rounded-xl transition-all duration-200 w-full text-sm font-medium ${isActive
+                                            ? 'text-white bg-gradient-to-r from-green-600 to-green-700 shadow-lg'
+                                            : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
                                         }`
                                     }
                                 >
-                                    <FaHome />
-                                    Admin Home
+                                    <FaHome className="text-lg" />
+                                    <span>Admin Home</span>
                                 </NavLink>
                             </li>
 
@@ -38,12 +45,14 @@ const Dashboard = () => {
                                 <NavLink
                                     to={"add-items"}
                                     className={({ isActive }) =>
-                                        `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
+                                        `flex items-center gap-4 p-4 rounded-xl transition-all duration-200 w-full text-sm font-medium ${isActive
+                                            ? 'text-white bg-gradient-to-r from-green-600 to-green-700 shadow-lg'
+                                            : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
                                         }`
                                     }
                                 >
-                                    <FaUtensils />
-                                    Add Items
+                                    <FaUtensils className="text-lg" />
+                                    <span>Add Items</span>
                                 </NavLink>
                             </li>
 
@@ -51,12 +60,19 @@ const Dashboard = () => {
                                 <NavLink
                                     to={"manage-items"}
                                     className={({ isActive }) =>
-                                        `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
+                                        `flex items-center gap-4 p-4 rounded-xl transition-all duration-200 w-full text-sm font-medium ${isActive
+                                            ? 'text-white bg-gradient-to-r from-green-600 to-green-700 shadow-lg'
+                                            : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
                                         }`
                                     }
                                 >
-                                    <FaBars />
-                                    Manage Items ({menu.length})
+                                    <FaBars className="text-lg" />
+                                    <div className="flex items-center justify-between w-full">
+                                        <span>Manage Items</span>
+                                        <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full">
+                                            {menu.length}
+                                        </span>
+                                    </div>
                                 </NavLink>
                             </li>
 
@@ -64,12 +80,14 @@ const Dashboard = () => {
                                 <NavLink
                                     to={"manage-bookings"}
                                     className={({ isActive }) =>
-                                        `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
+                                        `flex items-center gap-4 p-4 rounded-xl transition-all duration-200 w-full text-sm font-medium ${isActive
+                                            ? 'text-white bg-gradient-to-r from-green-600 to-green-700 shadow-lg'
+                                            : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
                                         }`
                                     }
                                 >
-                                    <FaBook />
-                                    Manage Bookings
+                                    <FaBook className="text-lg" />
+                                    <span>Manage Bookings</span>
                                 </NavLink>
                             </li>
 
@@ -77,153 +95,181 @@ const Dashboard = () => {
                                 <NavLink
                                     to={"all-users"}
                                     className={({ isActive }) =>
-                                        `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
+                                        `flex items-center gap-4 p-4 rounded-xl transition-all duration-200 w-full text-sm font-medium ${isActive
+                                            ? 'text-white bg-gradient-to-r from-green-600 to-green-700 shadow-lg'
+                                            : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
                                         }`
                                     }
                                 >
-                                    <FaUsers />
-                                    All Users
+                                    <FaUsers className="text-lg" />
+                                    <span>All Users</span>
                                 </NavLink>
                             </li>
 
                         </> :
                             <>
-
-                            {/* Normal users routes */}
+                                {/* Normal users routes */}
                                 <li className="w-full">
                                     <NavLink
                                         to={"users-home"}
                                         className={({ isActive }) =>
-                                            `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
+                                            `flex items-center gap-4 p-4 rounded-xl transition-all duration-200 w-full text-sm font-medium ${isActive
+                                                ? 'text-white bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg'
+                                                : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
                                             }`
                                         }
                                     >
-                                        <FaHome />
-                                        User Home
+                                        <FaHome className="text-lg" />
+                                        <span>User Home</span>
                                     </NavLink>
                                 </li>
                                 <li className="w-full">
                                     <NavLink
                                         to={"reservation"}
                                         className={({ isActive }) =>
-                                            `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
+                                            `flex items-center gap-4 p-4 rounded-xl transition-all duration-200 w-full text-sm font-medium ${isActive
+                                                ? 'text-white bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg'
+                                                : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
                                             }`
                                         }
                                     >
-                                        <FaCalendar />
-                                        Reservation
+                                        <FaCalendar className="text-lg" />
+                                        <span>Reservation</span>
                                     </NavLink>
                                 </li>
                                 <li className="w-full">
                                     <NavLink
                                         to={"payment-history"}
                                         className={({ isActive }) =>
-                                            `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
+                                            `flex items-center gap-4 p-4 rounded-xl transition-all duration-200 w-full text-sm font-medium ${isActive
+                                                ? 'text-white bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg'
+                                                : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
                                             }`
                                         }
                                     >
-                                        <FaDollarSign />
-                                        Payment History
+                                        <FaDollarSign className="text-lg" />
+                                        <span>Payment History</span>
                                     </NavLink>
                                 </li>
                                 <li className="w-full">
                                     <NavLink
                                         to={"cart"}
                                         className={({ isActive }) =>
-                                            `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
+                                            `flex items-center gap-4 p-4 rounded-xl transition-all duration-200 w-full text-sm font-medium ${isActive
+                                                ? 'text-white bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg'
+                                                : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
                                             }`
                                         }
                                     >
-                                        <FaCartShopping />
-                                        My Cart ({cart.length})
+                                        <FaCartShopping className="text-lg" />
+                                        <div className="flex items-center justify-between w-full">
+                                            <span>My Cart</span>
+                                            <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                                                {cart.length}
+                                            </span>
+                                        </div>
                                     </NavLink>
                                 </li>
                                 <li className="w-full">
                                     <NavLink
                                         to={"add-review"}
                                         className={({ isActive }) =>
-                                            `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
+                                            `flex items-center gap-4 p-4 rounded-xl transition-all duration-200 w-full text-sm font-medium ${isActive
+                                                ? 'text-white bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg'
+                                                : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
                                             }`
                                         }
                                     >
-                                        <FaStar />
-                                        Add Review
+                                        <FaStar className="text-lg" />
+                                        <span>Add Review</span>
                                     </NavLink>
                                 </li>
                                 <li className="w-full">
                                     <NavLink
                                         to={"my-booking"}
                                         className={({ isActive }) =>
-                                            `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
+                                            `flex items-center gap-4 p-4 rounded-xl transition-all duration-200 w-full text-sm font-medium ${isActive
+                                                ? 'text-white bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg'
+                                                : 'text-slate-300 hover:text-white hover:bg-slate-700/50'
                                             }`
                                         }
                                     >
-                                        <FaCalendarCheck />
-                                        My Booking
+                                        <FaCalendarCheck className="text-lg" />
+                                        <span>My Booking</span>
                                     </NavLink>
                                 </li>
                             </>
-
                     }
 
-                    {/*---------------------------- Divider---------------------- */}
-                    <div className="divider"></div>
+                    {/* Divider */}
+                    <div className="w-full my-4">
+                        <div className="border-t border-slate-600"></div>
+                        <p className="text-xs text-slate-500 mt-3 mb-1 px-2 uppercase tracking-wide">
+                            Quick Access
+                        </p>
+                    </div>
 
                     <li className="w-full">
                         <NavLink
                             to={"/"}
                             className={({ isActive }) =>
-                                `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
+                                `flex items-center gap-4 p-4 rounded-xl transition-all duration-200 w-full text-sm font-medium ${isActive
+                                    ? 'text-white bg-gradient-to-r from-slate-600 to-slate-700 shadow-lg'
+                                    : 'text-slate-400 hover:text-white hover:bg-slate-700/30'
                                 }`
                             }
                         >
-                            <FaHome></FaHome>
-                            Home
+                            <FaHome className="text-lg" />
+                            <span>Home</span>
                         </NavLink>
                     </li>
                     <li className="w-full">
                         <NavLink
                             to={"/menu"}
                             className={({ isActive }) =>
-                                `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
+                                `flex items-center gap-4 p-4 rounded-xl transition-all duration-200 w-full text-sm font-medium ${isActive
+                                    ? 'text-white bg-gradient-to-r from-slate-600 to-slate-700 shadow-lg'
+                                    : 'text-slate-400 hover:text-white hover:bg-slate-700/30'
                                 }`
                             }
                         >
-                            <FaHamburger></FaHamburger>
-                            Menu
+                            <FaHamburger className="text-lg" />
+                            <span>Menu</span>
                         </NavLink>
                     </li>
                     <li className="w-full">
                         <NavLink
                             to={"/order"}
                             className={({ isActive }) =>
-                                `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
+                                `flex items-center gap-4 p-4 rounded-xl transition-all duration-200 w-full text-sm font-medium ${isActive
+                                    ? 'text-white bg-gradient-to-r from-slate-600 to-slate-700 shadow-lg'
+                                    : 'text-slate-400 hover:text-white hover:bg-slate-700/30'
                                 }`
                             }
                         >
-                            <FaShop></FaShop>
-                            Shop
+                            <FaShop className="text-lg" />
+                            <span>Shop</span>
                         </NavLink>
                     </li>
                     <li className="w-full">
                         <NavLink
                             to={"/contactUs"}
                             className={({ isActive }) =>
-                                `flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 w-full ${isActive ? 'text-white bg-orange-500' : 'text-black hover:bg-orange-400'
+                                `flex items-center gap-4 p-4 rounded-xl transition-all duration-200 w-full text-sm font-medium ${isActive
+                                    ? 'text-white bg-gradient-to-r from-slate-600 to-slate-700 shadow-lg'
+                                    : 'text-slate-400 hover:text-white hover:bg-slate-700/30'
                                 }`
                             }
                         >
-                            <FaCalendarCheck />
-                            Contact
+                            <FaCalendarCheck className="text-lg" />
+                            <span>Contact</span>
                         </NavLink>
                     </li>
-
                 </ul>
             </div>
 
-
             {/* Dashboard content */}
-            <div className="flex-1 p-4 bg-[#E8E8E8]">
+            <div className="flex-1 p-6 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
                 <Outlet />
             </div>
         </div>
