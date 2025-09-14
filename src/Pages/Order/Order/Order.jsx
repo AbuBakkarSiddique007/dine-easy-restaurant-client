@@ -54,7 +54,7 @@ const Order = () => {
                     <Tab>Desserts</Tab>
                     <Tab>Drinks</Tab> */}
 
-                        <Tab style={{ color: tabIndex === 0 ? '#bb8506' : '#151515' }}>OFFERffered</Tab>
+                        <Tab style={{ color: tabIndex === 0 ? '#bb8506' : '#151515' }}>OFFERED</Tab>
                         <Tab style={{ color: tabIndex === 1 ? '#bb8506' : '#151515' }}>SALADS</Tab>
                         <Tab style={{ color: tabIndex === 2 ? '#bb8506' : '#151515' }}>PIZZA</Tab>
                         <Tab style={{ color: tabIndex === 3 ? '#bb8506' : '#151515' }}>SOUPS</Tab>

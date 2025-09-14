@@ -1,32 +1,18 @@
-import React, { useEffect, useState } from 'react';
 import SectionTitles from '../../../Components/SectionTitles/SectionTitles';
 import Loader from '../../../Shared/Loader/Loader';
-
-// {
-//         "_id": "642c155b2c4774f05c36ee99",
-//         "name": "Goats Cheese Pizza",
-//         "recipe": "Roasted duck breast (served pink) with gratin potato and a griottine cherry sauce",
-//         "image": "https://cristianonew.ukrdevs.com/wp-content/uploads/2017/01/bbq-370x247.jpg",
-//         "category": "pizza",
-//         "price": 14.5
-// }
+import useAxiosPublic from '../../../hooks/useAxiosPublic/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
 
 const ChefRecom = () => {
-    const [menuData, setMenuData] = useState([])
-    const [loading, setLoading] = useState(true)
-
-    useEffect(() => {
-        fetch("/MenuData/menu.json")
-            .then((result) => result.json())
-            .then((data) => {
-                const specificData = data.filter((item) => item.category === "pizza").slice(0, 3)
-                setMenuData(specificData)
-                setLoading(false)
-            })
-
-    }
-        , [])
-
+    const axiosPublic = useAxiosPublic()
+    const { data: menuData = [], isPending: loading } = useQuery({
+        queryKey: ['menuData'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/menu')
+            const specificData = res.data.filter((item) => item.category === "pizza").slice(0, 3)
+            return specificData
+        }
+    })
 
     if (loading) return <Loader></Loader>
 

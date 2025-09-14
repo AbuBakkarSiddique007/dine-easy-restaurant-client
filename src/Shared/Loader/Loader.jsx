@@ -2,7 +2,7 @@ import { RotatingLines } from "react-loader-spinner";
 
 const Loader = () => {
     return (
-        <div>
+        <div className="flex justify-center items-center min-h-[300px] w-full">
             <RotatingLines
                 visible={true}
                 height="96"
@@ -11,8 +11,6 @@ const Loader = () => {
                 strokeWidth="5"
                 animationDuration="0.75"
                 ariaLabel="rotating-lines-loading"
-                wrapperStyle={{}}
-                wrapperClass=""
             />
         </div>
     );
